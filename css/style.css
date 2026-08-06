@@ -146,6 +146,9 @@ input[type=file]{display:none}
 @keyframes pulseRing{0%,100%{border-color:var(--text5);box-shadow:0 0 0 0 var(--accent-glow)}50%{border-color:var(--accent);box-shadow:0 0 16px 4px var(--accent-glow)}}
 @keyframes bounceDown{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
+
+.scroll-hint .arrow-ring svg{color:rgba(255,255,255,.5);transition:color .4s ease}
+.light .scroll-hint .arrow-ring svg{color:rgba(0,0,0,.4)}
 .lang-switch.active{background:rgba(0,122,255,.2)!important;border-color:#0071ED!important;color:#fff!important}
 
 .mobile-nav-right{display:flex;align-items:center;gap:.5rem}
