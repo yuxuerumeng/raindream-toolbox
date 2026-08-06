@@ -155,9 +155,74 @@ input[type=file]{display:none}
 .personal-btn svg{width:12px;height:12px}
 .mobile-nav-right{display:flex;align-items:center;gap:.5rem}
 @media(max-width:768px){
-  .mobile-nav-right{gap:.35rem}
-  .personal-btn{padding:.25rem .6rem;font-size:.65rem;border-radius:12px}
+  .nav{padding:0 .75rem;height:48px}
+  .nav-brand{font-size:.9rem}
+  .nav-brand svg{width:16px;height:16px}
+  .nav-back{font-size:.72rem}
+  .nav-back svg{width:12px;height:12px}
+  .hero{padding:5rem 1rem 3rem;justify-content:center}
+  .hero h1{font-size:2rem}
+  .hero p{font-size:.9rem;padding:0 .5rem}
+  .carousel-wrap{max-width:280px;height:100px;margin-top:2rem}
+  .carousel-card{padding:1rem 1.25rem}
+  .carousel-card .c-icon{width:36px;height:36px;font-size:1.1rem}
+  .carousel-card .c-info h3{font-size:.8rem}
+  .carousel-card .c-info p{font-size:.7rem}
+  .tool-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .tool-card{padding:.9rem;border-radius:13px}
+  .tool-card .card-icon{width:32px;height:32px;border-radius:9px;font-size:1rem;margin-bottom:.4rem}
+  .tool-card h3{font-size:.78rem}
+  .tool-card .card-desc{font-size:.68rem}
+  .section{padding:2.5rem .75rem}
+  .section-label{margin-bottom:.8rem;font-size:.65rem}
+  .tool-header{padding:4rem .75rem 1.25rem}
+  .tool-header h1{font-size:1.5rem}
+  .tool-header .desc{font-size:.82rem;padding:0 .25rem}
+  .tool-body{padding:0 .75rem 3rem}
+  .tool-body textarea{min-height:100px;font-size:.75rem}
+  .tool-body input[type=text],.tool-body input[type=url],.tool-body select,.tool-body input[type=number]{font-size:.8rem;padding:.5rem .7rem}
+  .control-row{flex-direction:column;align-items:stretch;gap:.5rem;margin:1rem 0}
+  .control-row label{min-width:auto}
+  .upload-zone{padding:1.5rem .75rem}
+  .upload-zone p{font-size:.8rem}
+  .upload-zone .upload-icon svg{width:24px;height:24px}
+  .preview-row{flex-direction:column;gap:.75rem}
+  .preview-card{padding:1rem;min-width:0}
+  .preview-card .p-label{font-size:.65rem}
+  .ad-slot{padding:.75rem;margin:1rem .25rem;font-size:.65rem}
+  .ad-slot.horizontal{min-height:60px}
+  .result-bar{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-outline{font-size:.78rem;padding:.5rem 1rem;justify-content:center}
+  .btn-sm{font-size:.72rem;padding:.4rem .9rem}
+  .scroll-hint{bottom:1rem}
+  .scroll-hint .arrow-ring{width:36px;height:36px}
+  .scroll-hint .hint-text{font-size:.62rem}
+  .site-footer{padding:1.5rem .75rem;font-size:.65rem}
+  .footer-links{flex-wrap:wrap;gap:.8rem}
+  input[type=range]{width:100%}
+  .palette-row{gap:.35rem;justify-content:center}
+  .swatch-block{width:60px;height:60px;border-radius:10px}
+  .swatch-block .sw-hex{font-size:.6rem}
+  .code-output{font-size:.72rem;padding:.75rem;max-height:250px}
+  .file-item{font-size:.75rem;padding:.5rem .75rem}
+  .file-item .fbtn{font-size:.7rem}
+  .qr-result canvas{max-width:220px!important;height:auto!important}
+  .personal-btn{padding:.2rem .5rem;font-size:.6rem;border-radius:10px}
   .personal-btn svg{width:10px;height:10px}
+  .mobile-nav-right{gap:.3rem}
+  .mobile-nav-right .lang-switch{padding:.15rem .45rem;font-size:.62rem}
+  .mobile-nav-right .theme-toggle{width:26px;height:26px}
+  .mobile-nav-right .theme-toggle svg{width:12px;height:12px}
+}
+@media(max-width:400px){
+  .tool-grid{grid-template-columns:1fr 1fr;gap:.45rem}
+  .tool-card{padding:.75rem;border-radius:11px}
+  .tool-card h3{font-size:.72rem}
+  .tool-card .card-desc{font-size:.64rem}
+  .hero h1{font-size:1.7rem}
+  .hero p{font-size:.82rem}
+  .carousel-wrap{max-width:250px;height:90px}
+  .tool-header h1{font-size:1.3rem}
 }
 
 .hero-btn{margin-left:auto;margin-right:auto;display:inline-flex}
@@ -167,32 +232,74 @@ input[type=file]{display:none}
 .mobile-nav-right{display:flex;align-items:center;gap:.5rem}
 
 @media(max-width:768px){
-  .nav{padding:0 1rem;height:48px}
-  .nav-links{display:none!important}
+  .nav{padding:0 .75rem;height:48px}
+  .nav-brand{font-size:.9rem}
+  .nav-brand svg{width:16px;height:16px}
+  .nav-back{font-size:.72rem}
+  .nav-back svg{width:12px;height:12px}
   .hero{padding:5rem 1rem 3rem;justify-content:center}
-  .hero h1{font-size:2.2rem}
-  .hero p{font-size:.95rem}
-  .tool-grid{grid-template-columns:repeat(2,1fr);gap:.65rem}
-  .tool-card{padding:1rem;border-radius:14px}
-  .tool-card .card-icon{width:34px;height:34px;border-radius:10px;font-size:1.1rem;margin-bottom:.5rem}
-  .tool-card h3{font-size:.82rem}
-  .tool-card .card-desc{font-size:.7rem}
-  .section{padding:2.5rem 1rem}
-  .section-label{margin-bottom:1rem}
-  .tool-header{padding:4.5rem 1rem 1.5rem}
-  .tool-header h1{font-size:1.6rem}
-  .tool-body{padding:0 1rem 3rem}
-  .control-row{flex-direction:column;align-items:stretch}
-  .upload-zone{padding:2rem 1rem}
-  .preview-row{flex-direction:column}
-  .ad-slot{padding:1rem;margin:1.5rem .5rem}
-  .scroll-hint{bottom:1.2rem}
-  .scroll-hint .arrow-ring{width:40px;height:40px}
-  .scroll-hint .hint-text{font-size:.68rem}
-  .site-footer{padding:2rem 1rem}
-  .footer-links{flex-wrap:wrap;gap:1rem}
+  .hero h1{font-size:2rem}
+  .hero p{font-size:.9rem;padding:0 .5rem}
+  .carousel-wrap{max-width:280px;height:100px;margin-top:2rem}
+  .carousel-card{padding:1rem 1.25rem}
+  .carousel-card .c-icon{width:36px;height:36px;font-size:1.1rem}
+  .carousel-card .c-info h3{font-size:.8rem}
+  .carousel-card .c-info p{font-size:.7rem}
+  .tool-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .tool-card{padding:.9rem;border-radius:13px}
+  .tool-card .card-icon{width:32px;height:32px;border-radius:9px;font-size:1rem;margin-bottom:.4rem}
+  .tool-card h3{font-size:.78rem}
+  .tool-card .card-desc{font-size:.68rem}
+  .section{padding:2.5rem .75rem}
+  .section-label{margin-bottom:.8rem;font-size:.65rem}
+  .tool-header{padding:4rem .75rem 1.25rem}
+  .tool-header h1{font-size:1.5rem}
+  .tool-header .desc{font-size:.82rem;padding:0 .25rem}
+  .tool-body{padding:0 .75rem 3rem}
+  .tool-body textarea{min-height:100px;font-size:.75rem}
+  .tool-body input[type=text],.tool-body input[type=url],.tool-body select,.tool-body input[type=number]{font-size:.8rem;padding:.5rem .7rem}
+  .control-row{flex-direction:column;align-items:stretch;gap:.5rem;margin:1rem 0}
+  .control-row label{min-width:auto}
+  .upload-zone{padding:1.5rem .75rem}
+  .upload-zone p{font-size:.8rem}
+  .upload-zone .upload-icon svg{width:24px;height:24px}
+  .preview-row{flex-direction:column;gap:.75rem}
+  .preview-card{padding:1rem;min-width:0}
+  .preview-card .p-label{font-size:.65rem}
+  .ad-slot{padding:.75rem;margin:1rem .25rem;font-size:.65rem}
+  .ad-slot.horizontal{min-height:60px}
+  .result-bar{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-outline{font-size:.78rem;padding:.5rem 1rem;justify-content:center}
+  .btn-sm{font-size:.72rem;padding:.4rem .9rem}
+  .scroll-hint{bottom:1rem}
+  .scroll-hint .arrow-ring{width:36px;height:36px}
+  .scroll-hint .hint-text{font-size:.62rem}
+  .site-footer{padding:1.5rem .75rem;font-size:.65rem}
+  .footer-links{flex-wrap:wrap;gap:.8rem}
   input[type=range]{width:100%}
-  .carousel-wrap{max-width:300px;height:110px}
+  .palette-row{gap:.35rem;justify-content:center}
+  .swatch-block{width:60px;height:60px;border-radius:10px}
+  .swatch-block .sw-hex{font-size:.6rem}
+  .code-output{font-size:.72rem;padding:.75rem;max-height:250px}
+  .file-item{font-size:.75rem;padding:.5rem .75rem}
+  .file-item .fbtn{font-size:.7rem}
+  .qr-result canvas{max-width:220px!important;height:auto!important}
+  .personal-btn{padding:.2rem .5rem;font-size:.6rem;border-radius:10px}
+  .personal-btn svg{width:10px;height:10px}
+  .mobile-nav-right{gap:.3rem}
+  .mobile-nav-right .lang-switch{padding:.15rem .45rem;font-size:.62rem}
+  .mobile-nav-right .theme-toggle{width:26px;height:26px}
+  .mobile-nav-right .theme-toggle svg{width:12px;height:12px}
+}
+@media(max-width:400px){
+  .tool-grid{grid-template-columns:1fr 1fr;gap:.45rem}
+  .tool-card{padding:.75rem;border-radius:11px}
+  .tool-card h3{font-size:.72rem}
+  .tool-card .card-desc{font-size:.64rem}
+  .hero h1{font-size:1.7rem}
+  .hero p{font-size:.82rem}
+  .carousel-wrap{max-width:250px;height:90px}
+  .tool-header h1{font-size:1.3rem}
 }
 @media(max-width:400px){
   .tool-grid{grid-template-columns:1fr 1fr;gap:.5rem}
