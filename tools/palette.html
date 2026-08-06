@@ -63,5 +63,5 @@ function hex(r,g,b){return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).jo
 function dist(a,b){return Math.sqrt((a.r-b.r)**2+(a.g-b.g)**2+(a.b-b.b)**2)}
 function show(m){const t=document.getElementById('toast');t.textContent='已复制 '+m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
 </script>
-<script src="../js/i18n.js"></script></body>
+<script src="../js/theme.js"></script><script src="../js/i18n.js"></script></body>
 </html>

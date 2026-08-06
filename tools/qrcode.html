@@ -69,5 +69,5 @@ document.getElementById('genBtn').onclick=async()=>{
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
 function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src})}
 </script>
-<script src="../js/i18n.js"></script></body>
+<script src="../js/theme.js"></script><script src="../js/i18n.js"></script></body>
 </html>
