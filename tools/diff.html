@@ -9,12 +9,12 @@
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 </head><body>
 <nav class="nav"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg data-i18n="back_home">返回首页</a><a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a></nav>
-<header class="tool-header"><h1>文本对比</h1><p class="desc">左右粘贴两段文本，高亮显示差异。</p></header>
+<header class="tool-header"><h1 data-i18n="tool_diff_title">文本对比</h1><p class="desc" data-i18n="tool_diff_desc_full">左右粘贴两段文本，高亮显示差异。</p></header>
 <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 — 部署后替换为 AdSense 代码 ]</span></div>
 <div class="tool-body" style="max-width:960px">
   <div style="display:flex;gap:1rem;flex-wrap:wrap">
-    <div style="flex:1;min-width:0"><div class="form-group"><label data-i18n="label_old_text">原始文本</label><textarea id="oldText" style="height:250px" placeholder="粘贴原始文本..."></textarea></div></div>
-    <div style="flex:1;min-width:0"><div class="form-group"><label data-i18n="label_new_text">新文本</label><textarea id="newText" style="height:250px" placeholder="粘贴新文本..."></textarea></div></div>
+    <div style="flex:1;min-width:0"><div class="form-group"><label data-i18n="label_old_text">原始文本</label><textarea id="oldText" style="height:250px" placeholder="粘贴原始文本..." data-i18n-placeholder="input_content"></textarea></div></div>
+    <div style="flex:1;min-width:0"><div class="form-group"><label data-i18n="label_new_text">新文本</label><textarea id="newText" style="height:250px" placeholder="粘贴新文本..." data-i18n-placeholder="input_content"></textarea></div></div>
   </div>
   <button class="btn-primary" id="compare">对比</button>
   <div id="diffResult" style="margin-top:1.25rem;background:rgba(255,255,255,.015);border:1px solid rgba(255,255,255,.04);border-radius:10px;padding:1rem;font-size:.78rem;max-height:400px;overflow:auto"></div>
