@@ -23,7 +23,7 @@
       tool_password:"密码生成器",tool_password_desc:"随机强密码，自定义长度",
       ad_placeholder:"[ 广告位 — 部署后替换为 AdSense 代码 ]",
       footer_privacy:"所有工具均为浏览器本地处理，文件不会上传至任何服务器。",
-      footer_copy:"© 2026 ToolBox — tb.raindream.top",
+      footer_copy:"© 2026 ToolBox — raindream.top",
       back_home:"返回首页",lang_label:"EN"
     },
     en:{
@@ -48,7 +48,7 @@
       tool_password:"Password Generator",tool_password_desc:"Strong random passwords",
       ad_placeholder:"[ Ad Slot — Replace with AdSense code ]",
       footer_privacy:"All tools process files locally. Nothing is uploaded.",
-      footer_copy:"© 2026 ToolBox — tb.raindream.top",
+      footer_copy:"© 2026 ToolBox — raindream.top",
       back_home:"Back to Home",lang_label:"中"
     }
   };
