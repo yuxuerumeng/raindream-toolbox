@@ -26,7 +26,7 @@
   }
   // Init
   const stored=localStorage.getItem(KEY);
-  const theme=stored||getSystemTheme();
+  const theme=stored||'light';
   applyTheme(theme);
   // Listen for system changes
   window.matchMedia('(prefers-color-scheme: light)').addEventListener('change',e=>{
