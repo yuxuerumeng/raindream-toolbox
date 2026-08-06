@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片压缩 — ToolBox</title>
+<meta name="description" content="在线图片压缩工具，拖动滑块实时调节质量，即时预览压缩前后对比。浏览器本地处理，无需上传。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="../index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    返回首页
+  </a>
+  <a href="../index.html" class="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+    ToolBox
+  </a>
+</nav>
+<header class="tool-header">
+  <h1>图片压缩</h1>
+  <p class="desc">拖动滑块实时调节质量，即时预览压缩效果。所有处理均在浏览器本地完成。</p>
+</header>
+<div class="tool-body">
+  <div class="upload-zone" id="dropZone">
+    <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+    <p>拖拽图片到此处</p><p class="or">或</p>
+    <button class="btn-sm" onclick="document.getElementById('fileInput').click()">选择文件</button>
+    <input type="file" id="fileInput" accept="image/*">
+  </div>
+  <div class="control-row">
+    <label>压缩质量</label>
+    <input type="range" id="quality" min="10" max="100" value="75">
+    <span id="qualityVal" style="font-size:.78rem;color:rgba(255,255,255,.4);min-width:2.5rem">75%</span>
+  </div>
+  <div class="preview-row">
+    <div class="preview-card"><div class="p-label">原图</div><img id="origImg" alt="" style="display:none"><span class="p-size" id="origSize"></span></div>
+    <div class="preview-card"><div class="p-label">压缩后</div><img id="prevImg" alt="" style="display:none"><span class="p-size" id="prevSize"></span></div>
+  </div>
+  <div class="result-bar" id="resultBar">
+    <button class="btn-primary" id="downloadBtn">下载压缩图片</button>
+  </div>
+</div>
+<div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
+<footer class="site-footer"><p>所有处理均在浏览器本地完成。&copy; 2026 ToolBox</p></footer>
+<div class="toast" id="toast"></div>
+<script>
+let curFile=null,curBlob=null;
+const q=document.getElementById('quality'),qv=document.getElementById('qualityVal');
+q.oninput=()=>{qv.textContent=q.value+'%';if(curFile)compress()};
+function handleFile(f){
+  if(!f.type.startsWith('image/'))return;
+  curFile=f;
+  document.getElementById('origImg').src=URL.createObjectURL(f);
+  document.getElementById('origImg').style.display='block';
+  document.getElementById('origSize').textContent=fmtSize(f.size);
+  compress();
+}
+async function compress(){
+  const img=await loadImg(URL.createObjectURL(curFile));
+  const c=document.createElement('canvas');c.width=img.width;c.height=img.height;
+  c.getContext('2d').drawImage(img,0,0);
+  curBlob=await new Promise(r=>c.toBlob(r,'image/jpeg',parseInt(q.value)/100));
+  document.getElementById('prevImg').src=URL.createObjectURL(curBlob);
+  document.getElementById('prevImg').style.display='block';
+  document.getElementById('prevSize').textContent=fmtSize(curBlob.size);
+  document.getElementById('resultBar').classList.add('show');
+}
+document.getElementById('downloadBtn').onclick=()=>{
+  if(!curBlob)return;download(curBlob,curFile.name.replace(/\.\w+$/,'_compressed.jpg'));
+};
+const dz=document.getElementById('dropZone');
+dz.ondragover=e=>{e.preventDefault();dz.classList.add('drag-over')};
+dz.ondragleave=()=>dz.classList.remove('drag-over');
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove('drag-over');handleFile(e.dataTransfer.files[0])};
+document.getElementById('fileInput').onchange=e=>{if(e.target.files[0])handleFile(e.target.files[0])};
+function fmtSize(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(2)+' MB'}
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src})}
+</script>
+</body>
+</html>

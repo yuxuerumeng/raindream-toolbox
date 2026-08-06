@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html><html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大小写转换 — ToolBox</title>
+<meta name="description" content="在线文本大小写转换，支持大写、小写、首字母大写、驼峰等。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head><body>
+<nav class="nav"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回首页</a><a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a></nav>
+<header class="tool-header"><h1>大小写转换</h1><p class="desc">输入文本，选择转换方式，一键复制结果。</p></header>
+<div class="tool-body">
+  <div class="form-group"><label>输入文本</label><textarea id="input" placeholder="输入要转换的文本..."></textarea></div>
+  <div class="control-row" style="flex-wrap:wrap">
+    <button class="btn-sm case-btn" data-mode="upper">全大写</button>
+    <button class="btn-sm case-btn" data-mode="lower">全小写</button>
+    <button class="btn-sm case-btn" data-mode="title">首字母大写</button>
+    <button class="btn-sm case-btn" data-mode="sentence">句首大写</button>
+    <button class="btn-sm case-btn" data-mode="camel">驼峰命名</button>
+    <button class="btn-sm case-btn" data-mode="snake">蛇形命名</button>
+    <button class="btn-sm case-btn" data-mode="kebab">短横命名</button>
+  </div>
+  <div class="form-group"><label>输出结果</label><textarea id="output" readonly></textarea></div>
+  <button class="btn-sm" id="copy">复制结果</button>
+</div>
+<div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
+<footer class="site-footer"><p>&copy; 2026 ToolBox</p></footer>
+<div class="toast" id="toast"></div>
+<script>
+const modes={
+  upper:s=>s.toUpperCase(),
+  lower:s=>s.toLowerCase(),
+  title:s=>s.replace(/\b\w/g,c=>c.toUpperCase()),
+  sentence:s=>s.replace(/(^\s*\w|[.!?]\s+\w)/g,c=>c.toUpperCase()),
+  camel:s=>s.toLowerCase().replace(/[^a-z0-9]+(.)/g,(_,c)=>c.toUpperCase()).replace(/^./,c=>c.toLowerCase()),
+  snake:s=>s.toLowerCase().replace(/\s+/g,'_').replace(/[^a-z0-9_]/g,''),
+  kebab:s=>s.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')
+};
+document.querySelectorAll('.case-btn').forEach(b=>b.onclick=()=>{
+  document.getElementById('output').value=modes[b.dataset.mode](document.getElementById('input').value);
+});
+document.getElementById('copy').onclick=()=>{const v=document.getElementById('output').value;if(v){navigator.clipboard.writeText(v);show('已复制')}};
+function show(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+</script>
+</body></html>

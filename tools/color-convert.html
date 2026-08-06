@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html><html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>颜色转换 — ToolBox</title>
+<meta name="description" content="HEX/RGB/HSL颜色格式互转工具。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>.color-preview{width:100%;height:80px;border-radius:12px;margin-bottom:1rem;transition:background .3s}</style>
+</head><body>
+<nav class="nav"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回首页</a><a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a></nav>
+<header class="tool-header"><h1>颜色转换</h1><p class="desc">HEX / RGB / HSL 互相转换，实时预览颜色。</p></header>
+<div class="tool-body" style="max-width:500px">
+  <div class="color-preview" id="preview" style="background:#0071ED"></div>
+  <div class="form-group"><label>HEX 颜色</label><input type="text" id="hexIn" placeholder="#0071ED" value="#0071ED"></div>
+  <div class="form-group"><label>RGB</label><div style="display:flex;gap:.5rem"><input type="number" id="rIn" placeholder="R" min="0" max="255" style="flex:1"><input type="number" id="gIn" placeholder="G" min="0" max="255" style="flex:1"><input type="number" id="bIn" placeholder="B" min="0" max="255" style="flex:1"></div></div>
+  <div class="form-group"><label>HSL</label><div style="display:flex;gap:.5rem"><input type="number" id="hIn" placeholder="H" min="0" max="360" style="flex:1"><input type="number" id="sIn" placeholder="S%" min="0" max="100" style="flex:1"><input type="number" id="lIn" placeholder="L%" min="0" max="100" style="flex:1"></div></div>
+  <button class="btn-sm" id="copyHex">复制 HEX</button>
+</div>
+<div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
+<footer class="site-footer"><p>&copy; 2026 ToolBox</p></footer>
+<div class="toast" id="toast"></div>
+<script>
+const p=document.getElementById('preview'),hi=document.getElementById('hexIn'),ri=document.getElementById('rIn'),gi=document.getElementById('gIn'),bi=document.getElementById('bIn'),hslH=document.getElementById('hIn'),hslS=document.getElementById('sIn'),hslL=document.getElementById('lIn');
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b);let h=0,s=0;const l=(max+min)/2;if(max!==min){const d=max-min;s=l>.5?d/(2-max-min):d/(max+min);switch(max){case r:h=((g-b)/d+(g<b?6:0))/6;break;case g:h=((b-r)/d+2)/6;break;case b:h=((r-g)/d+4)/6;break}}return[Math.round(h*360),Math.round(s*100),Math.round(l*100)]}
+function hslToRgb(h,s,l){s/=100;l/=100;const a=s*Math.min(l,1-l);const f=n=>{const k=(n+h/30)%12;return l-a*Math.max(Math.min(k-3,9-k,1),-1)};return[Math.round(f(0)*255),Math.round(f(8)*255),Math.round(f(4)*255)]}
+function syncAll(r,g,b){
+  ri.value=r;gi.value=g;bi.value=b;
+  const hex='#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');hi.value=hex;
+  const [h,s,l]=rgbToHsl(r,g,b);hslH.value=h;hslS.value=s;hslL.value=l;
+  p.style.background=hex;
+}
+hi.addEventListener('input',()=>{const v=hi.value.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);if(v)syncAll(parseInt(v[1],16),parseInt(v[2],16),parseInt(v[3],16))});
+[ri,gi,bi].forEach(el=>el.addEventListener('input',()=>{const r=parseInt(ri.value)||0,g=parseInt(gi.value)||0,b=parseInt(bi.value)||0;syncAll(r,g,b)}));
+[hslH,hslS,hslL].forEach(el=>el.addEventListener('input',()=>{const [r,g,b]=hslToRgb(parseInt(hslH.value)||0,parseInt(hslS.value)||0,parseInt(hslL.value)||0);syncAll(r,g,b)}));
+document.getElementById('copyHex').onclick=()=>{navigator.clipboard.writeText(hi.value);show('已复制 '+hi.value)};
+function show(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+</script>
+</body></html>

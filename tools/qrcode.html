@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二维码生成 — ToolBox</title>
+<meta name="description" content="免费在线二维码生成器，输入文字或链接即可生成二维码，支持自定义Logo。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="../index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回首页
+  </a>
+  <a href="../index.html" class="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox
+  </a>
+</nav>
+<header class="tool-header">
+  <h1>二维码生成</h1>
+  <p class="desc">输入网址或文本，选择尺寸，可添加自定义 Logo 让二维码更有个性。</p>
+</header>
+<div class="tool-body" style="max-width:500px">
+  <div class="form-group">
+    <label>内容</label>
+    <input type="url" id="qrText" placeholder="输入网址或文本内容...">
+  </div>
+  <div class="control-row" style="margin-top:0">
+    <label>尺寸</label>
+    <select id="qrSize"><option value="200">200px</option><option value="300" selected>300px</option><option value="400">400px</option></select>
+    <label>Logo（可选）</label>
+    <button class="btn-sm" onclick="document.getElementById('logoInput').click()" style="white-space:nowrap">选择Logo</button>
+    <input type="file" id="logoInput" accept="image/*">
+  </div>
+  <button class="btn-primary" id="genBtn">生成二维码</button>
+  <div id="qrResult" style="display:flex;flex-direction:column;align-items:center;margin-top:2rem"></div>
+</div>
+<div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
+<footer class="site-footer"><p>所有处理均在浏览器本地完成。&copy; 2026 ToolBox</p></footer>
+<div class="toast" id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+<script>
+document.getElementById('genBtn').onclick=async()=>{
+  const text=document.getElementById('qrText').value.trim();
+  if(!text){showToast('请输入内容');return}
+  const size=parseInt(document.getElementById('qrSize').value);
+  const res=document.getElementById('qrResult');res.innerHTML='';
+  const c=document.createElement('canvas');
+  await QRCode.toCanvas(c,text,{width:size,margin:2,color:{dark:'#f5f5f7',light:'#000'}});
+  const logoF=document.getElementById('logoInput').files[0];
+  if(logoF){
+    const logo=await loadImg(URL.createObjectURL(logoF));
+    const ctx=c.getContext('2d'),ls=size*.22,lx=(size-ls)/2;
+    ctx.fillStyle='#000';ctx.beginPath();ctx.roundRect(lx-2,lx-2,ls+4,ls+4,8);ctx.fill();
+    ctx.fillStyle='#fff';ctx.beginPath();ctx.roundRect(lx,lx,ls,ls,6);ctx.fill();
+    ctx.drawImage(logo,lx,lx,ls,ls);
+  }
+  res.appendChild(c);
+  const btn=document.createElement('button');btn.className='btn-primary';btn.style.marginTop='1rem';btn.textContent='下载二维码';
+  btn.onclick=()=>{const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='qrcode.png';a.click()};
+  res.appendChild(btn);
+};
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src})}
+</script>
+</body>
+</html>

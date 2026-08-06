@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>格式转换 — ToolBox</title>
+<meta name="description" content="在线图片格式转换，PNG/JPEG/WebP互转，浏览器本地处理无需上传。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回首页</a>
+  <a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a>
+</nav>
+<header class="tool-header"><h1>格式转换</h1><p class="desc">上传图片，一键转换为 PNG / JPEG / WebP 格式。</p></header>
+<div class="tool-body">
+  <div class="upload-zone" id="dz">
+    <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+    <p>拖拽图片到此处</p><p class="or">或</p>
+    <button class="btn-sm" onclick="document.getElementById('fi').click()">选择文件</button>
+    <input type="file" id="fi" accept="image/*">
+  </div>
+  <div class="control-row"><label>目标格式</label><select id="fmt"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select></div>
+  <div class="preview-row">
+    <div class="preview-card"><div class="p-label">原图</div><img id="orig" alt="" style="display:none"></div>
+    <div class="preview-card"><div class="p-label">转换后</div><img id="prev" alt="" style="display:none"></div>
+  </div>
+  <div class="result-bar" id="rb"><button class="btn-primary" id="dl">下载转换后图片</button></div>
+</div>
+<div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
+<footer class="site-footer"><p>所有处理均在浏览器本地完成。&copy; 2026 ToolBox</p></footer>
+<script>
+let cf=null,cb=null;
+function hf(f){if(!f.type.startsWith('image/'))return;cf=f;document.getElementById('orig').src=URL.createObjectURL(f);document.getElementById('orig').style.display='block';conv()}
+document.getElementById('fmt').onchange=()=>{if(cf)conv()};
+async function conv(){
+  const fmt=document.getElementById('fmt').value;
+  const img=await loadImg(URL.createObjectURL(cf));
+  const c=document.createElement('canvas');c.width=img.width;c.height=img.height;
+  c.getContext('2d').drawImage(img,0,0);
+  cb=await new Promise(r=>c.toBlob(r,fmt,.92));
+  document.getElementById('prev').src=URL.createObjectURL(cb);document.getElementById('prev').style.display='block';
+  document.getElementById('rb').classList.add('show');
+}
+document.getElementById('dl').onclick=()=>{if(!cb)return;const ext=document.getElementById('fmt').value.split('/')[1];download(cb,cf.name.replace(/\.\w+$/,'.'+ext))};
+const dz=document.getElementById('dz');
+dz.ondragover=e=>{e.preventDefault();dz.classList.add('drag-over')};
+dz.ondragleave=()=>dz.classList.remove('drag-over');
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove('drag-over');hf(e.dataTransfer.files[0])};
+document.getElementById('fi').onchange=e=>{if(e.target.files[0])hf(e.target.files[0])};
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
+function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src})}
+</script>
+</body>
+</html>

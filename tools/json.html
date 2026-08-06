@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html><html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON 格式化 — ToolBox</title>
+<meta name="description" content="在线JSON格式化/压缩工具，自动校验语法错误。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head><body>
+<nav class="nav"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回首页</a><a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a></nav>
+<header class="tool-header"><h1>JSON 格式化</h1><p class="desc">粘贴JSON，一键美化或压缩。自动校验语法并显示错误位置。</p></header>
+<div class="tool-body">
+  <div class="form-group"><label>输入 JSON</label><textarea id="input" placeholder="{"name":"hello"}"></textarea></div>
+  <div class="control-row"><button class="btn-primary" id="beautify">美化格式</button><button class="btn-outline" id="minify">压缩</button><button class="btn-outline" id="clear">清空</button><span id="err" style="font-size:.75rem;color:#ff453a"></span></div>
+  <div class="form-group"><label>输出结果</label><textarea id="output" readonly></textarea></div>
+  <button class="btn-sm" id="copy">复制结果</button>
+</div>
+<div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
+<footer class="site-footer"><p>&copy; 2026 ToolBox</p></footer>
+<div class="toast" id="toast"></div>
+<script>
+document.getElementById('beautify').onclick=()=>{
+  try{const o=JSON.parse(document.getElementById('input').value);document.getElementById('output').value=JSON.stringify(o,null,2);document.getElementById('err').textContent=''}catch(e){document.getElementById('err').textContent=e.message}
+};
+document.getElementById('minify').onclick=()=>{
+  try{const o=JSON.parse(document.getElementById('input').value);document.getElementById('output').value=JSON.stringify(o);document.getElementById('err').textContent=''}catch(e){document.getElementById('err').textContent=e.message}
+};
+document.getElementById('clear').onclick=()=>{document.getElementById('input').value='';document.getElementById('output').value='';document.getElementById('err').textContent=''};
+document.getElementById('copy').onclick=()=>{const v=document.getElementById('output').value;if(v){navigator.clipboard.writeText(v);show('已复制')}};
+function show(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+</script>
+</body></html>
