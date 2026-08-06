@@ -17,7 +17,8 @@
   <button class="btn-sm" id="copy">复制结果</button>
 </div>
 <div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
-<footer class="site-footer"><p><span data-i18n="footer_copy">&copy; 2026 ToolBox</span></p></footer>
+<footer class="site-footer"><p><span data-i18n="footer_copy">&copy; 2026 ToolBox</span></p><p style="margin-top:.5rem;color:rgba(255,255,255,.2);font-size:.7rem">Made by <a href="https://i.raindream.top" target="_blank" style="color:rgba(255,255,255,.35)">雨梦 RainDream</a></p>
+</footer>
 <div class="toast" id="toast"></div>
 <script>
 document.getElementById('encode').onclick=()=>{try{document.getElementById('output').value=btoa(unescape(encodeURIComponent(document.getElementById('input').value)))}catch(e){document.getElementById('output').value=btoa(document.getElementById('input').value)}};
