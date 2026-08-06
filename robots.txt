@@ -1,3 +1,3 @@
 ﻿User-agent: *
 Allow: /
-Sitemap: https://tb.raindream.top/sitemap.xml
+Sitemap: https://raindream.top/sitemap.xml
