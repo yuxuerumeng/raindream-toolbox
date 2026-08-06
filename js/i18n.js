@@ -26,9 +26,10 @@
   }
   applyLang(detectLang());
   window.addEventListener('DOMContentLoaded',()=>{
-    const navLinks=document.querySelector('.nav-links');
-    if(navLinks){const li=document.createElement('li');insertSwitcher(li);navLinks.appendChild(li)}
-    else{const nav=document.querySelector('.nav');if(nav){const wrap=document.createElement('div');insertSwitcher(wrap);nav.appendChild(wrap)}}
+    const nav=document.querySelector('.nav');if(!nav)return;
+    let mr=nav.querySelector('.mobile-nav-right');
+    if(!mr){mr=document.createElement('div');mr.className='mobile-nav-right';nav.appendChild(mr)}
+    insertSwitcher(mr);
   });
   
 
