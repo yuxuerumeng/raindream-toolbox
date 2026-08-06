@@ -20,7 +20,7 @@
   function insertSwitcher(target){
     const next=current==='zh'?'en':'zh';const btn=document.createElement('button');
     btn.className='lang-switch';btn.dataset.lang=next;btn.textContent=dicts[current].lang_label;
-    btn.onclick=function(e){e.preventDefault();applyLang(next,[btn]);updateBtns([btn])};
+    btn.onclick=function(e){e.preventDefault();const n=current==='zh'?'en':'zh';applyLang(n,[btn]);updateBtns([btn])};
     btn.style.cssText='background:none;border:1px solid var(--border3);color:var(--text3);padding:.2rem .65rem;border-radius:10px;font-size:.7rem;cursor:pointer;font-family:inherit;transition:all .3s';
     target.appendChild(btn);updateBtns([btn]);
   }
