@@ -22,8 +22,8 @@
 <div class="tool-body">
   <div class="upload-zone" id="dz">
     <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-    <p>拖拽 PDF 文件到此处（可多选）</p><p class="or">或</p>
-    <button class="btn-sm" onclick="document.getElementById('fi').click()">选择文件</button>
+    <p data-i18n="upload_pdf_drop">拖拽 PDF 文件到此处（可多选）</p><p class="or" data-i18n="upload_or">或</p>
+    <button class="btn-sm" data-i18n="select_file" onclick="document.getElementById('fi').click()">选择文件</button>
     <input type="file" id="fi" accept=".pdf" multiple>
   </div>
   <div class="file-list" id="list"></div>

@@ -22,14 +22,14 @@
 <div class="tool-body">
   <div class="upload-zone" id="dz">
     <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-    <p>拖拽图片到此处</p><p class="or">或</p>
-    <button class="btn-sm" onclick="document.getElementById('fi').click()">选择文件</button>
+    <p data-i18n="upload_drop">拖拽图片到此处</p><p class="or" data-i18n="upload_or">或</p>
+    <button class="btn-sm" data-i18n="select_file" onclick="document.getElementById('fi').click()">选择文件</button>
     <input type="file" id="fi" accept="image/*">
   </div>
-  <div class="control-row"><label>目标格式</label><select id="fmt"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select></div>
+  <div class="control-row"><label data-i18n="target_format">目标格式</label><select id="fmt"><option value="image/png">PNG</option><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option></select></div>
   <div class="preview-row">
-    <div class="preview-card"><div class="p-label">原图</div><img id="orig" alt="" style="display:none"></div>
-    <div class="preview-card"><div class="p-label">转换后</div><img id="prev" alt="" style="display:none"></div>
+    <div class="preview-card"><div class="p-label" data-i18n="label_original">原图</div><img id="orig" alt="" style="display:none"></div>
+    <div class="preview-card"><div class="p-label" data-i18n="label_converted">转换后</div><img id="prev" alt="" style="display:none"></div>
   </div>
   <div class="result-bar" id="rb"><button class="btn-primary" id="dl">下载转换后图片</button></div>
 </div>
