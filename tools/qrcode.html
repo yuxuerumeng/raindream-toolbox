@@ -39,7 +39,7 @@
   <div id="qrResult" style="display:flex;flex-direction:column;align-items:center;margin-top:2rem"></div>
 </div>
 <div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
-<footer class="site-footer"><p>所有处理均在浏览器本地完成。&copy; 2026 ToolBox</p></footer>
+<footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p></footer>
 <div class="toast" id="toast"></div>
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
 <script>
@@ -66,5 +66,5 @@ document.getElementById('genBtn').onclick=async()=>{
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
 function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src})}
 </script>
-</body>
+<script src="../js/i18n.js"></script></body>
 </html>

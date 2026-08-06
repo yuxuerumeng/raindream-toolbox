@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ToolBox — 免费在线工具，所有处理本地完成</title>
-<meta name="description" content="图片压缩、二维码生成、JSON格式化、PDF合并、Base64编解码等15+在线工具。无需上传，浏览器本地处理，快速安全免费。">
+<title data-i18n="site_title">ToolBox — 免费在线工具，所有处理本地完成</title>
+<meta name="description" content="图片压缩、二维码生成、JSON格式化、PDF合并等15+在线工具。浏览器本地处理，快速安全免费。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
 .carousel-dots{display:flex;justify-content:center;gap:.4rem;margin-top:.75rem}
 .carousel-dots button{width:6px;height:6px;border-radius:50%;border:none;background:rgba(255,255,255,.15);cursor:pointer;padding:0;transition:all .3s}
 .carousel-dots button.active{background:#0071ED;width:18px;border-radius:3px}
+.lang-switch.active{background:rgba(0,122,255,.2)!important;border-color:#0071ED!important;color:#fff!important}
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
@@ -30,22 +31,22 @@
     ToolBox
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">首页</a></li>
+    <li><a href="index.html" data-i18n="nav_home">首页</a></li>
   </ul>
 </nav>
 
 <section class="hero" style="min-height:100vh">
   <div class="hero-bg"></div>
-  <h1>工具<span class="gradient-text">即刻可用</span></h1>
-  <p>15+ 在线工具，全部浏览器本地处理，快速安全免费。</p>
+  <h1>工具<span class="gradient-text" data-i18n="hero_title">即刻可用</span></h1>
+  <p data-i18n="hero_sub">15+ 在线工具，全部浏览器本地处理，快速安全免费。</p>
 
   <div class="carousel-wrap">
-    <a href="tools/compress.html" class="carousel-card active" data-i="0"><div class="c-icon">🖼</div><div class="c-info"><h3>图片压缩</h3><p>实时调节质量，即时预览</p></div></a>
-    <a href="tools/qrcode.html" class="carousel-card" data-i="1"><div class="c-icon">📱</div><div class="c-info"><h3>二维码生成</h3><p>支持自定义 Logo</p></div></a>
-    <a href="tools/convert.html" class="carousel-card" data-i="2"><div class="c-icon">🔄</div><div class="c-info"><h3>格式转换</h3><p>PNG / JPEG / WebP 互转</p></div></a>
-    <a href="tools/json.html" class="carousel-card" data-i="3"><div class="c-icon">{ }</div><div class="c-info"><h3>JSON 格式化</h3><p>美化 / 压缩 / 校验</p></div></a>
-    <a href="tools/pdf.html" class="carousel-card" data-i="4"><div class="c-icon">📄</div><div class="c-info"><h3>PDF 合并</h3><p>多文件排序一键合并</p></div></a>
-    <a href="tools/palette.html" class="carousel-card" data-i="5"><div class="c-icon">🎨</div><div class="c-info"><h3>调色板</h3><p>提取图片配色方案</p></div></a>
+    <a href="tools/compress.html" class="carousel-card active" data-i="0"><div class="c-icon">🖼</div><div class="c-info"><h3 data-i18n="tool_compress">图片压缩</h3><p data-i18n="tool_compress_desc">实时调节质量，即时预览</p></div></a>
+    <a href="tools/qrcode.html" class="carousel-card" data-i="1"><div class="c-icon">📱</div><div class="c-info"><h3 data-i18n="tool_qrcode">二维码生成</h3><p data-i18n="tool_qrcode_desc">支持自定义 Logo</p></div></a>
+    <a href="tools/convert.html" class="carousel-card" data-i="2"><div class="c-icon">🔄</div><div class="c-info"><h3 data-i18n="tool_convert">格式转换</h3><p data-i18n="tool_convert_desc">PNG / JPEG / WebP 互转</p></div></a>
+    <a href="tools/json.html" class="carousel-card" data-i="3"><div class="c-icon">{ }</div><div class="c-info"><h3 data-i18n="tool_json">JSON 格式化</h3><p data-i18n="tool_json_desc">美化 / 压缩 / 校验</p></div></a>
+    <a href="tools/pdf.html" class="carousel-card" data-i="4"><div class="c-icon">📄</div><div class="c-info"><h3 data-i18n="tool_pdf">PDF 合并</h3><p data-i18n="tool_pdf_desc">多文件排序一键合并</p></div></a>
+    <a href="tools/palette.html" class="carousel-card" data-i="5"><div class="c-icon">🎨</div><div class="c-info"><h3 data-i18n="tool_palette">调色板</h3><p data-i18n="tool_palette_desc">提取图片配色方案</p></div></a>
   </div>
 
   <div class="carousel-dots" id="dots"></div>
@@ -54,83 +55,59 @@
     <div class="arrow-ring">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
-    <span style="font-size:.65rem">向下滚动</span>
+    <span class="hint-text" data-i18n="scroll_hint">向下滚动</span>
   </div>
 </section>
 
 <div class="section" style="padding-top:3rem">
-  <div class="section-label">图片工具</div>
+  <div class="section-label" data-i18n="cat_image">图片工具</div>
   <div class="tool-grid">
-    <a href="tools/compress.html" class="tool-card"><div class="card-icon">🖼</div><h3>图片压缩</h3><p class="card-desc">拖动滑块实时调节质量，即时预览压缩效果</p></a>
-    <a href="tools/convert.html" class="tool-card"><div class="card-icon">🔄</div><h3>格式转换</h3><p class="card-desc">PNG / JPEG / WebP 任意互转</p></a>
-    <a href="tools/qrcode.html" class="tool-card"><div class="card-icon">📱</div><h3>二维码生成</h3><p class="card-desc">输入内容一键生成，支持自定义Logo</p></a>
-    <a href="tools/palette.html" class="tool-card"><div class="card-icon">🎨</div><h3>调色板</h3><p class="card-desc">上传图片智能提取配色方案</p></a>
+    <a href="tools/compress.html" class="tool-card"><div class="card-icon">🖼</div><h3 data-i18n="tool_compress">图片压缩</h3><p class="card-desc" data-i18n="tool_compress_desc">拖动滑块实时调节质量，即时预览压缩效果</p></a>
+    <a href="tools/convert.html" class="tool-card"><div class="card-icon">🔄</div><h3 data-i18n="tool_convert">格式转换</h3><p class="card-desc" data-i18n="tool_convert_desc">PNG / JPEG / WebP 任意互转</p></a>
+    <a href="tools/qrcode.html" class="tool-card"><div class="card-icon">📱</div><h3 data-i18n="tool_qrcode">二维码生成</h3><p class="card-desc" data-i18n="tool_qrcode_desc">输入内容一键生成，支持自定义Logo</p></a>
+    <a href="tools/palette.html" class="tool-card"><div class="card-icon">🎨</div><h3 data-i18n="tool_palette">调色板</h3><p class="card-desc" data-i18n="tool_palette_desc">上传图片智能提取配色方案</p></a>
   </div>
 </div>
 
 <div class="ad-slot horizontal" style="max-width:1100px;margin:0 auto 1rem">
-  <span>[ 广告位 — 部署后替换为 AdSense 代码 ]</span>
+  <span data-i18n="ad_placeholder">[ 广告位 — 部署后替换为 AdSense 代码 ]</span>
 </div>
 
 <div class="section" style="padding-top:2rem">
-  <div class="section-label">文档工具</div>
+  <div class="section-label" data-i18n="cat_doc">文档工具</div>
   <div class="tool-grid">
-    <a href="tools/pdf.html" class="tool-card"><div class="card-icon">📄</div><h3>PDF 合并</h3><p class="card-desc">多文件拖拽排序，一键合并下载</p></a>
-    <a href="tools/json.html" class="tool-card"><div class="card-icon">{ }</div><h3>JSON 格式化</h3><p class="card-desc">压缩或美化JSON，自动校验语法</p></a>
-    <a href="tools/markdown.html" class="tool-card"><div class="card-icon">📝</div><h3>Markdown 预览</h3><p class="card-desc">实时预览，支持导出HTML</p></a>
-    <a href="tools/diff.html" class="tool-card"><div class="card-icon">⇔</div><h3>文本对比</h3><p class="card-desc">两段文本差异高亮对比</p></a>
-    <a href="tools/text-case.html" class="tool-card"><div class="card-icon">Aa</div><h3>大小写转换</h3><p class="card-desc">大写、小写、首字母大写、驼峰等</p></a>
+    <a href="tools/pdf.html" class="tool-card"><div class="card-icon">📄</div><h3 data-i18n="tool_pdf">PDF 合并</h3><p class="card-desc" data-i18n="tool_pdf_desc">多文件拖拽排序，一键合并下载</p></a>
+    <a href="tools/json.html" class="tool-card"><div class="card-icon">{ }</div><h3 data-i18n="tool_json">JSON 格式化</h3><p class="card-desc" data-i18n="tool_json_desc">压缩或美化JSON，自动校验语法</p></a>
+    <a href="tools/markdown.html" class="tool-card"><div class="card-icon">📝</div><h3 data-i18n="tool_markdown">Markdown 预览</h3><p class="card-desc" data-i18n="tool_markdown_desc">实时预览，支持导出HTML</p></a>
+    <a href="tools/diff.html" class="tool-card"><div class="card-icon">⇔</div><h3 data-i18n="tool_diff">文本对比</h3><p class="card-desc" data-i18n="tool_diff_desc">两段文本差异高亮对比</p></a>
+    <a href="tools/text-case.html" class="tool-card"><div class="card-icon">Aa</div><h3 data-i18n="tool_textcase">大小写转换</h3><p class="card-desc" data-i18n="tool_textcase_desc">大写、小写、首字母大写、驼峰等</p></a>
   </div>
 </div>
 
 <div class="section" style="padding-top:2rem">
-  <div class="section-label">开发工具</div>
+  <div class="section-label" data-i18n="cat_dev">开发工具</div>
   <div class="tool-grid">
-    <a href="tools/base64.html" class="tool-card"><div class="card-icon">64</div><h3>Base64 编解码</h3><p class="card-desc">文本/图片 Base64 编码与解码</p></a>
-    <a href="tools/url-encode.html" class="tool-card"><div class="card-icon">🔗</div><h3>URL 编解码</h3><p class="card-desc">URL编码与解码，一键复制</p></a>
-    <a href="tools/uuid.html" class="tool-card"><div class="card-icon">#</div><h3>UUID 生成器</h3><p class="card-desc">生成UUID v4，支持批量生成</p></a>
-    <a href="tools/timestamp.html" class="tool-card"><div class="card-icon">🕐</div><h3>时间戳转换</h3><p class="card-desc">Unix时间戳与日期双向转换</p></a>
-    <a href="tools/color-convert.html" class="tool-card"><div class="card-icon">🎯</div><h3>颜色转换</h3><p class="card-desc">HEX / RGB / HSL 互转</p></a>
-    <a href="tools/password.html" class="tool-card"><div class="card-icon">🔐</div><h3>密码生成器</h3><p class="card-desc">随机强密码，自定义长度</p></a>
+    <a href="tools/base64.html" class="tool-card"><div class="card-icon">64</div><h3 data-i18n="tool_base64">Base64 编解码</h3><p class="card-desc" data-i18n="tool_base64_desc">文本/图片 Base64 编码与解码</p></a>
+    <a href="tools/url-encode.html" class="tool-card"><div class="card-icon">🔗</div><h3 data-i18n="tool_urlencode">URL 编解码</h3><p class="card-desc" data-i18n="tool_urlencode_desc">URL编码与解码，一键复制</p></a>
+    <a href="tools/uuid.html" class="tool-card"><div class="card-icon">#</div><h3 data-i18n="tool_uuid">UUID 生成器</h3><p class="card-desc" data-i18n="tool_uuid_desc">生成UUID v4，支持批量生成</p></a>
+    <a href="tools/timestamp.html" class="tool-card"><div class="card-icon">🕐</div><h3 data-i18n="tool_timestamp">时间戳转换</h3><p class="card-desc" data-i18n="tool_timestamp_desc">Unix时间戳与日期双向转换</p></a>
+    <a href="tools/color-convert.html" class="tool-card"><div class="card-icon">🎯</div><h3 data-i18n="tool_color">颜色转换</h3><p class="card-desc" data-i18n="tool_color_desc">HEX / RGB / HSL 互转</p></a>
+    <a href="tools/password.html" class="tool-card"><div class="card-icon">🔐</div><h3 data-i18n="tool_password">密码生成器</h3><p class="card-desc" data-i18n="tool_password_desc">随机强密码，自定义长度</p></a>
   </div>
 </div>
 
 <div class="ad-slot horizontal" style="max-width:1100px;margin:2rem auto">
-  <span>[ 广告位 — 部署后替换为 AdSense 代码 ]</span>
+  <span data-i18n="ad_placeholder">[ 广告位 — 部署后替换为 AdSense 代码 ]</span>
 </div>
 
 <footer class="site-footer">
-  <div class="footer-links">
-    <a href="index.html">首页</a>
-  </div>
-  <p style="margin-top:.5rem">所有工具均为浏览器本地处理，文件不会上传至任何服务器。</p>
-  <p style="margin-top:.25rem">&copy; 2026 ToolBox — tb.raindream.top</p>
+  <div class="footer-links"><a href="index.html" data-i18n="nav_home">首页</a></div>
+  <p style="margin-top:.5rem" data-i18n="footer_privacy">所有工具均为浏览器本地处理，文件不会上传至任何服务器。</p>
+  <p style="margin-top:.25rem" data-i18n="footer_copy">© 2026 ToolBox — tb.raindream.top</p>
 </footer>
 
+<script src="js/i18n.js"></script>
 <script>
-// === Carousel ===
-const cards=document.querySelectorAll('.carousel-card');
-const dotsContainer=document.getElementById('dots');
-let idx=0;
-
-cards.forEach((_,i)=>{
-  const btn=document.createElement('button');
-  if(i===0)btn.classList.add('active');
-  btn.addEventListener('click',()=>goTo(i));
-  dotsContainer.appendChild(btn);
-});
-
-function goTo(i){
-  cards[idx].classList.remove('active');
-  dotsContainer.children[idx].classList.remove('active');
-  idx=i;
-  cards[idx].classList.add('active');
-  dotsContainer.children[idx].classList.add('active');
-}
-
-setInterval(()=>{goTo((idx+1)%cards.length)},1000);
-
-// === Card hover ===
 document.querySelectorAll('.tool-card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect();
@@ -138,6 +115,18 @@ document.querySelectorAll('.tool-card').forEach(card=>{
     card.style.setProperty('--my',(e.clientY-r.top)+'px');
   });
 });
+
+const cards=document.querySelectorAll('.carousel-card');
+const dotsContainer=document.getElementById('dots');
+let idx=0;
+cards.forEach((_,i)=>{
+  const btn=document.createElement('button');
+  if(i===0)btn.classList.add('active');
+  btn.addEventListener('click',()=>goTo(i));
+  dotsContainer.appendChild(btn);
+});
+function goTo(i){cards[idx].classList.remove('active');dotsContainer.children[idx].classList.remove('active');idx=i;cards[idx].classList.add('active');dotsContainer.children[idx].classList.add('active')}
+setInterval(()=>{goTo((idx+1)%cards.length)},1000);
 </script>
 </body>
 </html>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <nav class="nav">
-  <a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回首页</a>
+  <a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg data-i18n="back_home">返回首页</a>
   <a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a>
 </nav>
 <header class="tool-header"><h1>格式转换</h1><p class="desc">上传图片，一键转换为 PNG / JPEG / WebP 格式。</p></header>
@@ -31,7 +31,7 @@
   <div class="result-bar" id="rb"><button class="btn-primary" id="dl">下载转换后图片</button></div>
 </div>
 <div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
-<footer class="site-footer"><p>所有处理均在浏览器本地完成。&copy; 2026 ToolBox</p></footer>
+<footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p></footer>
 <script>
 let cf=null,cb=null;
 function hf(f){if(!f.type.startsWith('image/'))return;cf=f;document.getElementById('orig').src=URL.createObjectURL(f);document.getElementById('orig').style.display='block';conv()}
@@ -54,5 +54,5 @@ document.getElementById('fi').onchange=e=>{if(e.target.files[0])hf(e.target.file
 function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
 function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src})}
 </script>
-</body>
+<script src="../js/i18n.js"></script></body>
 </html>
