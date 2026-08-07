@@ -30,18 +30,13 @@ document.getElementById('extract').onclick=async()=>{
     if(d.error){res.innerHTML='<p style="color:#ff453a">'+d.error+'</p>';return}
     let h='';
     if(d.pic){
-      h+=`<div style="margin-bottom:1rem;max-width:400px">
-        <img src="${d.pic}" style="width:100%;border-radius:10px" alt="">
-        <a href="${d.pic}" download target="_blank" class="btn-outline" style="display:block;text-align:center;margin-top:.5rem">下载封面</a>
-      </div>`;
+      h+='<div style="margin-bottom:1rem;max-width:400px"><img src="'+d.pic+'" style="width:100%;border-radius:10px" alt=""><a href="'+d.pic+'" download target="_blank" class="btn-outline" style="display:block;text-align:center;margin-top:.5rem">下载封面</a></div>';
     }
-    h+=`<h3 style="margin-bottom:.75rem">${d.title||'无标题'}</h3>`;
-    if(d.videos&&d.videos.length>0){
-      d.videos.forEach(v=>{
-        h+=`<a href="${v.url}" target="_blank" class="btn-primary" style="margin-bottom:.5rem">下载视频</a> `;
-      });
+    h+='<h3 style="margin-bottom:.75rem">'+(d.title||'无标题')+'</h3>';
+    if(d.video){
+      h+='<a href="'+d.video+'" target="_blank" class="btn-primary">下载视频</a>';
     }else{
-      h+='<p style="color:var(--text3)">未获取到视频链接，请检查链接是否正确</p>';
+      h+='<p style="color:var(--text3)">未获取到视频链接，请检查链接或稍后重试</p>';
     }
     res.innerHTML=h;
   }catch(e){res.innerHTML='<p style="color:#ff453a">请求失败: '+e.message+'</p>'}
