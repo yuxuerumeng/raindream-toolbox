@@ -1,37 +1,48 @@
 <!DOCTYPE html><html lang="zh-CN">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YouTube 视频 — ToolBox</title>
-<meta name="description" content="YouTube视频播放和缩略图下载。">
+<meta name="description" content="YouTube视频播放和下载。">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../css/style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707601185440297" crossorigin="anonymous"></script>
-<style>.player-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;margin-top:1rem}
-.player-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}</style>
+<style>.player-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;margin-top:1rem}.player-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}.dl-link{display:block;padding:.5rem .8rem;background:var(--bg4);border-radius:8px;margin:.3rem 0;font-size:.82rem;color:var(--accent);word-break:break-all}</style>
 </head><body>
 <nav class="nav"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span data-i18n="back_home">返回首页</span></a><a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a></nav>
-<header class="tool-header"><h1 data-i18n="tool_ytthumb_title">YouTube 视频播放</h1><p class="desc" data-i18n="tool_ytthumb_desc_full">粘贴 YouTube 链接，即可播放和下载缩略图。</p></header>
+<header class="tool-header"><h1 data-i18n="tool_ytthumb_title">YouTube 视频下载</h1><p class="desc" data-i18n="tool_ytthumb_desc_full">粘贴YouTube链接，即可播放和下载。</p></header>
 <div class="tool-body">
   <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
   <div class="form-group"><label>YouTube 链接</label>
-    <div style="display:flex;gap:.5rem"><input type="text" id="url" placeholder="https://www.youtube.com/watch?v=..."><button class="btn-primary" id="load" style="white-space:nowrap">播放</button></div>
+    <div style="display:flex;gap:.5rem"><input type="text" id="url" placeholder="https://www.youtube.com/watch?v=..."><button class="btn-primary" id="load">播放</button><button class="btn-outline" id="dl">下载</button></div>
   </div>
-  <div id="player" style="margin-top:1rem"></div>
+  <div id="player"></div>
 </div>
 <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
 <footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p><p style="margin-top:.5rem;color:rgba(255,255,255,.2);font-size:.7rem">Made by <a href="https://i.raindream.top" target="_blank" style="color:rgba(255,255,255,.35)">雨梦 RainDream</a></p></footer>
 <script src="../js/theme.js"></script><script src="../js/i18n.js"></script>
 <script>
-function getYTId(u){const m=u.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);return m?m[1]:null}
-document.getElementById('load').onclick=()=>{
-  const u=document.getElementById('url').value.trim();
-  const id=getYTId(u);
-  if(!id){document.getElementById('player').innerHTML='<p style="color:#ff453a">无效链接</p>';return}
-  const sizes=[{label:'最大分辨率',key:'maxresdefault'},{label:'高清',key:'hqdefault'},{label:'标准',key:'sddefault'},{label:'中等',key:'mqdefault'}];
-  let h='<div class="player-wrap"><iframe src="https://www.youtube.com/embed/'+id+'" allowfullscreen></iframe></div><div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap"><a href="https://www.y2mate.com/youtube/'+id+'" target="_blank" class="btn-outline">第三方下载</a><a href="https://www.youtube.com/watch?v='+id+'" target="_blank" class="btn-sm">在YouTube打开</a></div><div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:.75rem">';
-  sizes.forEach(function(s){h+='<div class="preview-card" style="flex:1;min-width:150px"><div class="p-label">'+s.label+'</div><img src="https://img.youtube.com/vi/'+id+'/'+s.key+'.jpg" style="width:100%;border-radius:8px" onerror="this.parentElement.style.display=\'none\'"><a href="https://img.youtube.com/vi/'+id+'/'+s.key+'.jpg" download class="btn-sm" style="margin-top:.4rem;display:block;text-align:center">下载</a></div>'});
-  h+='</div>';
-  document.getElementById('player').innerHTML=h;
+var API="https://platform.snapany.com/api/v1/download";
+var KEY="sk_snapany_e8ybugbkxr1opmvfeye18sanlvsqonr0";
+function getYTId(u){var m=u.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);return m?m[1]:null}
+document.getElementById("load").onclick=function(){
+  var u=document.getElementById("url").value.trim();
+  var id=getYTId(u);
+  if(!id){document.getElementById("player").innerHTML='<p style="color:#ff453a">无效链接</p>';return}
+  document.getElementById("player").innerHTML='<div class="player-wrap"><iframe src="https://www.youtube.com/embed/'+id+'" allowfullscreen></iframe></div>';
+};
+document.getElementById("dl").onclick=async function(){
+  var u=document.getElementById("url").value.trim();
+  if(!u)return;
+  document.getElementById("player").innerHTML='<p style="color:var(--text3)">正在获取下载链接...</p>';
+  try{
+    var r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+KEY},body:JSON.stringify({url:u})});
+    var d=await r.json();
+    if(d.success && d.data){
+      var h='<p style="margin-bottom:.5rem"><strong>'+(d.data.title||"")+'</strong></p>';
+      if(d.data.medias) d.data.medias.forEach(function(m){h+='<a href="'+m.url+'" target="_blank" class="dl-link">'+(m.quality||"下载")+' ('+(m.size||"")+')</a>'});
+      else if(d.data.url) h+='<a href="'+d.data.url+'" target="_blank" class="btn-primary">下载视频</a>';
+      document.getElementById("player").innerHTML=h;
+    }else{document.getElementById("player").innerHTML='<p style="color:#ff453a">'+(d.message||"获取失败")+'</p>'}
+  }catch(e){document.getElementById("player").innerHTML='<p style="color:#ff453a">请求失败</p>'}
 };
 </script>
 </body></html>
