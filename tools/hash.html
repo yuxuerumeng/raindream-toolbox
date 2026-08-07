@@ -9,13 +9,13 @@
 <header class="tool-header"><h1 data-i18n="tool_hash_title">哈希生成</h1><p class="desc" data-i18n="tool_hash_desc">输入文本，生成 MD5 / SHA 哈希值。</p></header>
 <div class="tool-body">
   <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
-  <div class="form-group"><label>输入文本</label><textarea id="input" placeholder="输入要哈希的文本..."></textarea></div>
+  <div class="form-group"><label data-i18n="输入文本">输入文本<textarea id="input" data-i18n-placeholder="placeholder_输入要哈希的文本..." placeholder="输入要哈希的文本..."></textarea></div>
   <div class="control-row">
     <select id="algo"><option value="SHA-256">SHA-256</option><option value="SHA-1">SHA-1</option><option value="SHA-512">SHA-512</option><option value="MD5">MD5</option></select>
-    <button class="btn-primary" id="gen">生成哈希</button>
+    <button class="btn-primary" id="gen" data-i18n="生成哈希">生成哈希
   </div>
-  <div class="form-group"><label>哈希结果</label><div class="code-output mono" id="result" style="word-break:break-all"></div></div>
-  <button class="btn-sm" id="copy">复制结果</button>
+  <div class="form-group"><label data-i18n="哈希结果">哈希结果<div class="code-output mono" id="result" style="word-break:break-all"></div></div>
+  <button class="btn-sm" id="copy" data-i18n="btn_copy">复制结果
 </div>
 <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
 <footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p><p style="margin-top:.5rem;color:rgba(255,255,255,.2);font-size:.7rem">Made by <a href="https://i.raindream.top" target="_blank" style="color:rgba(255,255,255,.35)">雨梦 RainDream</a></p></footer>

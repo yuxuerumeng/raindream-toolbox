@@ -28,17 +28,17 @@
 <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 — 部署后替换为 AdSense 代码 ]</span></div>
 <div class="tool-body" style="max-width:500px">
   <div class="form-group">
-    <label data-i18n="label_input">内容</label>
-    <input type="url" id="qrText" placeholder="输入网址或文本内容..." data-i18n-placeholder="input_content">
+    <label data-i18n="内容">内容
+    <input type="url" id="qrText" data-i18n-placeholder="placeholder_输入网址或文本内容..." placeholder="输入网址或文本内容..." data-i18n-placeholder="input_content">
   </div>
   <div class="control-row" style="margin-top:0">
-    <label data-i18n="size_label">尺寸</label>
+    <label data-i18n="size_label">尺寸
     <select id="qrSize"><option value="200">200px</option><option value="300" selected>300px</option><option value="400">400px</option></select>
     <label data-i18n="logo_label">Logo（可选）</label>
-    <button class="btn-sm" data-i18n="select_file" onclick="document.getElementById('logoInput').click()" style="white-space:nowrap">选择Logo</button>
+    <button class="btn-sm" onclick="document.getElementById('logoInput').click()" style="white-space:nowrap" data-i18n="select_logo">选择Logo
     <input type="file" id="logoInput" accept="image/*">
   </div>
-  <button class="btn-primary" id="genBtn">生成二维码</button>
+  <button class="btn-primary" id="genBtn" data-i18n="generate_qr">生成二维码
   <div id="qrResult" style="display:flex;flex-direction:column;align-items:center;margin-top:2rem"></div>
 </div>
 <div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>

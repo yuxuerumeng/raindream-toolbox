@@ -32,11 +32,11 @@
   <div class="upload-zone" id="dropZone">
     <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
     <p data-i18n="upload_drop">拖拽图片到此处</p><p class="or" data-i18n="upload_or">或</p>
-    <button class="btn-sm" data-i18n="select_file" onclick="document.getElementById('fileInput').click()">选择文件</button>
+    <button class="btn-sm" onclick="document.getElementById('fileInput').click()" data-i18n="select_file">选择文件
     <input type="file" id="fileInput" accept="image/*">
   </div>
   <div class="control-row">
-    <label data-i18n="quality_label">压缩质量</label>
+    <label data-i18n="quality_label">压缩质量
     <input type="range" id="quality" min="10" max="100" value="75">
     <span id="qualityVal" style="font-size:.78rem;color:rgba(255,255,255,.4);min-width:2.5rem">75%</span>
   </div>
@@ -45,7 +45,7 @@
     <div class="preview-card"><div class="p-label" data-i18n="label_compressed">压缩后</div><img id="prevImg" alt="" style="display:none"><span class="p-size" id="prevSize"></span></div>
   </div>
   <div class="result-bar" id="resultBar">
-    <button class="btn-primary" id="downloadBtn" data-i18n="download_compressed">下载压缩图片</button>
+    <button class="btn-primary" id="downloadBtn" data-i18n="download_compressed">下载压缩图片
   </div>
 </div>
 <div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>

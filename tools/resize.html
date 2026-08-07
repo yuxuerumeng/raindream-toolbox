@@ -12,21 +12,21 @@
   <div class="upload-zone" id="dz">
     <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
     <p data-i18n="upload_drop">拖拽图片到此处</p><p class="or" data-i18n="upload_or">或</p>
-    <button class="btn-sm" onclick="document.getElementById('fi').click()" data-i18n="select_file">选择文件</button>
+    <button class="btn-sm" onclick="document.getElementById('fi').click()" data-i18n="select_file">选择文件
     <input type="file" id="fi" accept="image/*">
   </div>
-  <div class="control-row"><label>缩放比例</label><input type="range" id="scale" min="10" max="200" value="50"><span id="sv">50%</span></div>
+  <div class="control-row"><label data-i18n="缩放比例">缩放比例<input type="range" id="scale" min="10" max="200" value="50"><span id="sv">50%</span></div>
   <div class="control-row">
-    <input type="number" id="w" placeholder="宽度(px)" style="width:100px">
+    <input type="number" id="w" data-i18n-placeholder="placeholder_宽度(px)" placeholder="宽度(px)" style="width:100px">
     <span style="color:var(--text4)">×</span>
-    <input type="number" id="h" placeholder="高度(px)" style="width:100px">
-    <button class="btn-sm" id="applySize">应用尺寸</button>
+    <input type="number" id="h" data-i18n-placeholder="placeholder_高度(px)" placeholder="高度(px)" style="width:100px">
+    <button class="btn-sm" id="applySize" data-i18n="应用尺寸">应用尺寸
   </div>
   <div class="preview-row">
     <div class="preview-card"><div class="p-label">原图</div><img id="orig" style="display:none"></div>
     <div class="preview-card"><div class="p-label">缩放后</div><img id="prev" style="display:none"></div>
   </div>
-  <div class="result-bar" id="rb"><button class="btn-primary" id="dl">下载缩放图片</button></div>
+  <div class="result-bar" id="rb"><button class="btn-primary" id="dl" data-i18n="下载缩放图片">下载缩放图片</div>
 </div>
 <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
 <footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p><p style="margin-top:.5rem;color:rgba(255,255,255,.2);font-size:.7rem">Made by <a href="https://i.raindream.top" target="_blank" style="color:rgba(255,255,255,.35)">雨梦 RainDream</a></p></footer>

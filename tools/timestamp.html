@@ -12,12 +12,12 @@
 <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 — 部署后替换为 AdSense 代码 ]</span></div>
 <div class="tool-body" style="max-width:500px">
   <div class="form-group"><label>Unix 时间戳 → 日期</label>
-    <div style="display:flex;gap:.5rem"><input type="text" id="tsInput" placeholder="例如: 1700000000" data-i18n-placeholder="input_content" style="flex:1"><select id="unit"><option value="s">秒</option><option value="ms">毫秒</option></select><button class="btn-primary" id="ts2date">转换</button></div>
+    <div style="display:flex;gap:.5rem"><input type="text" id="tsInput" data-i18n-placeholder="placeholder_例如: 1700000000" placeholder="例如: 1700000000" data-i18n-placeholder="input_content" style="flex:1"><select id="unit"><option value="s">秒</option><option value="ms">毫秒</option></select><button class="btn-primary" id="ts2date" data-i18n="转换">转换</div>
     <div class="code-output" id="tsResult"></div>
   </div>
-  <div class="form-group" style="margin-top:1.5rem"><label>日期 → Unix 时间戳</label>
+  <div class="form-group" style="margin-top:1.5rem"><label data-i18n="日期 → Unix 时间戳">日期 → Unix 时间戳
     <input type="datetime-local" id="dateInput">
-    <button class="btn-primary" id="date2ts" style="margin-top:.5rem">获取时间戳</button>
+    <button class="btn-primary" id="date2ts" style="margin-top:.5rem" data-i18n="获取时间戳">获取时间戳
     <div class="code-output" id="dateResult"></div>
   </div>
   <div class="code-output" id="currentTs" style="margin-top:1rem">当前时间戳: </div>

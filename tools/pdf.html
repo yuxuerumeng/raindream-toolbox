@@ -23,11 +23,11 @@
   <div class="upload-zone" id="dz">
     <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
     <p data-i18n="upload_pdf_drop">拖拽 PDF 文件到此处（可多选）</p><p class="or" data-i18n="upload_or">或</p>
-    <button class="btn-sm" data-i18n="select_file" onclick="document.getElementById('fi').click()">选择文件</button>
+    <button class="btn-sm" onclick="document.getElementById('fi').click()" data-i18n="select_file">选择文件
     <input type="file" id="fi" accept=".pdf" multiple>
   </div>
   <div class="file-list" id="list"></div>
-  <div class="result-bar" id="rb"><button class="btn-primary" id="merge" disabled>合并并下载</button></div>
+  <div class="result-bar" id="rb"><button class="btn-primary" id="merge" disabled data-i18n="merge_btn">合并并下载</div>
 </div>
 <div class="ad-slot horizontal"><span>[ 广告位 ]</span></div>
 <footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p><p style="margin-top:.5rem;color:rgba(255,255,255,.2);font-size:.7rem">Made by <a href="https://i.raindream.top" target="_blank" style="color:rgba(255,255,255,.35)">雨梦 RainDream</a></p>
