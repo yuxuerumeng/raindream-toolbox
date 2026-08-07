@@ -20,4 +20,7 @@
   <url><loc>https://raindream.top/tools/css-minify.html</loc><priority>0.7</priority></url>
   <url><loc>https://raindream.top/tools/youtube-thumb.html</loc><priority>0.9</priority></url>
   <url><loc>https://raindream.top/tools/bilibili-cover.html</loc><priority>0.9</priority></url>
+  <url><loc>https://raindream.top/tools/hash.html</loc><priority>0.7</priority></url>
+  <url><loc>https://raindream.top/tools/resize.html</loc><priority>0.7</priority></url>
+  <url><loc>https://raindream.top/tools/regex.html</loc><priority>0.7</priority></url>
 </urlset>

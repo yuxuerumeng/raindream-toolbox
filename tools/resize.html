@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图片缩放 — ToolBox</title><meta name="description" content="在线图片尺寸缩放。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css"><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707601185440297" crossorigin="anonymous"></script>
+</head><body>
+<nav class="nav"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span data-i18n="back_home">返回首页</span></a><a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a></nav>
+<header class="tool-header"><h1 data-i18n="tool_resize_title">图片缩放</h1><p class="desc" data-i18n="tool_resize_desc">上传图片，按比例或指定尺寸缩放。</p></header>
+<div class="tool-body">
+  <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
+  <div class="upload-zone" id="dz">
+    <div class="upload-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+    <p data-i18n="upload_drop">拖拽图片到此处</p><p class="or" data-i18n="upload_or">或</p>
+    <button class="btn-sm" onclick="document.getElementById('fi').click()" data-i18n="select_file">选择文件</button>
+    <input type="file" id="fi" accept="image/*">
+  </div>
+  <div class="control-row"><label>缩放比例</label><input type="range" id="scale" min="10" max="200" value="50"><span id="sv">50%</span></div>
+  <div class="control-row">
+    <input type="number" id="w" placeholder="宽度(px)" style="width:100px">
+    <span style="color:var(--text4)">×</span>
+    <input type="number" id="h" placeholder="高度(px)" style="width:100px">
+    <button class="btn-sm" id="applySize">应用尺寸</button>
+  </div>
+  <div class="preview-row">
+    <div class="preview-card"><div class="p-label">原图</div><img id="orig" style="display:none"></div>
+    <div class="preview-card"><div class="p-label">缩放后</div><img id="prev" style="display:none"></div>
+  </div>
+  <div class="result-bar" id="rb"><button class="btn-primary" id="dl">下载缩放图片</button></div>
+</div>
+<div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
+<footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p><p style="margin-top:.5rem;color:rgba(255,255,255,.2);font-size:.7rem">Made by <a href="https://i.raindream.top" target="_blank" style="color:rgba(255,255,255,.35)">雨梦 RainDream</a></p></footer>
+<script src="../js/theme.js"></script><script src="../js/i18n.js"></script>
+<script>
+let file=null,blob=null;
+document.getElementById('scale').oninput=function(){document.getElementById('sv').textContent=this.value+'%';if(file)resize()};
+document.getElementById('applySize').onclick=function(){if(file)resize()};
+function handle(f){
+  if(!f.type.startsWith('image/'))return;file=f;
+  document.getElementById('orig').src=URL.createObjectURL(f);document.getElementById('orig').style.display='block';
+  resize();
+}
+async function resize(){
+  const img=await new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=URL.createObjectURL(file)});
+  const c=document.createElement('canvas');
+  const w=parseInt(document.getElementById('w').value)||0;
+  const h=parseInt(document.getElementById('h').value)||0;
+  if(w&&h){c.width=w;c.height=h}
+  else{const s=parseInt(document.getElementById('scale').value)/100;c.width=img.width*s;c.height=img.height*s}
+  c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+  blob=await new Promise(r=>c.toBlob(r,'image/png'));
+  document.getElementById('prev').src=URL.createObjectURL(blob);document.getElementById('prev').style.display='block';
+  document.getElementById('rb').classList.add('show');
+}
+document.getElementById('dl').onclick=()=>{if(blob){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='resized.png';a.click()}};
+const dz=document.getElementById('dz');
+dz.ondragover=e=>{e.preventDefault();dz.classList.add('drag-over')};
+dz.ondragleave=()=>dz.classList.remove('drag-over');
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove('drag-over');handle(e.dataTransfer.files[0])};
+document.getElementById('fi').onchange=e=>{if(e.target.files[0])handle(e.target.files[0])};
+</script>
+</body></html>
