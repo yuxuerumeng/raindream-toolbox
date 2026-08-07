@@ -1,65 +1,58 @@
 ﻿<!DOCTYPE html><html lang="zh-CN">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bilibili 封面提取 — ToolBox</title>
-<meta name="description" content="B站视频封面提取工具，粘贴链接获取高清封面。">
+<title>B站视频下载 — ToolBox</title>
+<meta name="description" content="B站视频封面提取+下载，粘贴链接获取视频信息和下载地址。">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9707601185440297" crossorigin="anonymous"></script>
 </head><body>
 <nav class="nav"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span data-i18n="back_home">返回首页</span></a><a href="../index.html" class="nav-brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>ToolBox</a></nav>
-<header class="tool-header"><h1 data-i18n="tool_bili_title">B站封面提取</h1><p class="desc" data-i18n="tool_bili_desc_full">粘贴B站视频链接，提取高清封面图片。</p></header>
+<header class="tool-header"><h1 data-i18n="tool_bili_title">B站视频下载</h1><p class="desc" data-i18n="tool_bili_desc_full">粘贴B站视频链接，获取封面和下载链接。</p></header>
 <div class="tool-body">
   <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
-  <div class="form-group"><label>B站链接</label><input type="text" id="url" placeholder="https://www.bilibili.com/video/BV... 或 https://b23.tv/..."></div>
-  <button class="btn-primary" id="extract">提取封面</button>
+  <div class="form-group"><label>B站链接</label><input type="text" id="url" placeholder="https://www.bilibili.com/video/BV... 或 BV号"></div>
+  <button class="btn-primary" id="extract">获取视频信息</button>
   <div id="result" style="margin-top:1.5rem"></div>
 </div>
 <div class="ad-slot horizontal"><span data-i18n="ad_placeholder">[ 广告位 ]</span></div>
 <footer class="site-footer"><p data-i18n="footer_privacy">所有处理均在浏览器本地完成。</p><p style="margin-top:.5rem;color:rgba(255,255,255,.2);font-size:.7rem">Made by <a href="https://i.raindream.top" target="_blank" style="color:rgba(255,255,255,.35)">雨梦 RainDream</a></p></footer>
 <script src="../js/theme.js"></script><script src="../js/i18n.js"></script>
 <script>
-function getBvid(u){
-  let m=u.match(/BV[a-zA-Z0-9]{10}/);
-  if(m)return m[0];
-  m=u.match(/av(\d+)/i);
-  if(m)return m[0];
-  return null;
+function getVideoId(u){
+  let m=u.match(/BV[a-zA-Z0-9]{10}/);if(m)return m[0];
+  m=u.match(/av(\d+)/i);if(m)return m[0];
+  return u.trim();
 }
 document.getElementById('extract').onclick=async()=>{
   const u=document.getElementById('url').value.trim();
-  const bvid=getBvid(u);
+  const id=getVideoId(u);
   const res=document.getElementById('result');
-  if(!bvid){res.innerHTML='<p style="color:#ff453a">无效的B站链接，请确保包含 BV 号或 av 号</p>';return}
-  res.innerHTML='<p style="color:var(--text3)">正在获取...</p>';
+  if(!id){res.innerHTML='<p style="color:#ff453a">无效的B站链接</p>';return}
+  res.innerHTML='<p style="color:var(--text3)">加载中...</p>';
   try{
-    if(bvid.startsWith('av')){
-      const r=await fetch(`https://api.bilibili.com/x/web-interface/view?aid=${bvid.slice(2)}`);
-      const d=await r.json();
-      if(d.code===0)showCover(d.data);
-      else res.innerHTML='<p style="color:#ff453a">获取失败</p>';
-    }else{
-      const r=await fetch(`https://api.bilibili.com/x/web-interface/view?bvid=${bvid}`);
-      const d=await r.json();
-      if(d.code===0)showCover(d.data);
-      else res.innerHTML='<p style="color:#ff453a">获取失败，请检查链接</p>';
-    }
-  }catch(e){
-    res.innerHTML='<p style="color:var(--text3)">直接粘贴 B站链接，尝试打开封面...</p>';
-    const r=await fetch(`https://api.bilibili.com/x/web-interface/view?bvid=${bvid}`);
+    const r=await fetch('/api/bilibili?url='+encodeURIComponent(id));
     const d=await r.json();
-    if(d.code===0)showCover(d.data);
-  }
+    if(d.error){res.innerHTML='<p style="color:#ff453a">'+d.error+'</p>';return}
+    let h=`<div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <div style="flex:0 0 300px;min-width:200px">
+        <img src="${d.pic}" style="width:100%;border-radius:10px" alt="">
+        <a href="${d.pic}" download class="btn-sm" style="display:block;text-align:center;margin-top:.5rem">下载封面</a>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <h3 style="margin-bottom:.5rem">${d.title||'无标题'}</h3>
+        <p style="font-size:.78rem;color:var(--text3)">播放: ${(d.stat?.view||0).toLocaleString()} · 弹幕: ${(d.stat?.danmaku||0).toLocaleString()} · UP主: ${d.owner?.name||'未知'}</p>`;
+    if(d.videos&&d.videos.length>0){
+      h+='<div style="margin-top:1rem"><strong>下载链接</strong></div>';
+      d.videos.forEach((v,i)=>{
+        h+=`<a href="${v.url}" target="_blank" class="btn-primary" style="margin-top:.5rem;display:inline-flex">下载分片 ${i+1} (${(v.size/1048576).toFixed(1)} MB)</a> `;
+      });
+    }else{
+      h+='<p style="margin-top:1rem;color:var(--text3)">未获取到下载链接，请确保视频未被删除。</p>';
+    }
+    h+='</div></div>';
+    res.innerHTML=h;
+  }catch(e){res.innerHTML='<p style="color:#ff453a">请求失败: '+e.message+'</p>'}
 };
-function showCover(d){
-  const r=document.getElementById('result');
-  r.innerHTML=`
-    <div style="margin-bottom:.75rem;font-size:.9rem"><strong>${d.title}</strong></div>
-    <img src="${d.pic}" style="max-width:100%;border-radius:10px" alt="">
-    <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-      <a href="${d.pic}" download class="btn-primary" target="_blank">下载封面</a>
-      <span style="font-size:.78rem;color:var(--text3);align-self:center">播放: ${d.stat.view} · 弹幕: ${d.stat.danmaku}</span>
-    </div>`;
-}
 </script>
 </body></html>
