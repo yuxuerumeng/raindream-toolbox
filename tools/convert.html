@@ -58,5 +58,5 @@ document.getElementById('fi').onchange=e=>{if(e.target.files[0])hf(e.target.file
 function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
 function loadImg(src){return new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.src=src})}
 </script>
-<script src="../js/theme.js"></script><script src="../js/i18n.js"></script></body>
+<script src="../js/theme.js"></script></body>
 </html>
